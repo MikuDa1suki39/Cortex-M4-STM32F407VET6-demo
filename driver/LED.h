@@ -1,12 +1,6 @@
 #ifndef _LED_H
 #define _LED_H
 
-// void led_init(void);
-
-// void LED_ON(void);
-
-// void LED_OFF(void);
-
 typedef struct led_desc
 {
     uint32_t clk_source;
