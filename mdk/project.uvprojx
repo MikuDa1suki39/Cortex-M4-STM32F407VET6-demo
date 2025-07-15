@@ -389,6 +389,18 @@
         </Group>
         <Group>
           <GroupName>driver</GroupName>
+          <Files>
+            <File>
+              <FileName>LED.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\driver\LED.c</FilePath>
+            </File>
+            <File>
+              <FileName>LED.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\driver\LED.h</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>firmware</GroupName>

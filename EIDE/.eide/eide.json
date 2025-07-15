@@ -12,12 +12,18 @@
         "files": [
           {
             "path": "../app/main.c"
+          },
+          {
+            "path": "../app/board.c"
           }
         ],
         "folders": [
           {
             "name": "inc",
             "files": [
+              {
+                "path": "../app/inc/board.h"
+              },
               {
                 "path": "../app/inc/main.h"
               }
@@ -28,7 +34,20 @@
       },
       {
         "name": "driver",
-        "files": [],
+        "files": [
+          {
+            "path": "../driver/LED.c"
+          },
+          {
+            "path": "../driver/LED.h"
+          },
+          {
+            "path": "../driver/delay.c"
+          },
+          {
+            "path": "../driver/delay.h"
+          }
+        ],
         "folders": []
       },
       {
@@ -313,11 +332,11 @@
         "bin": "",
         "baseAddr": "",
         "cpuInfo": {
-          "vendor": "null",
-          "cpuName": "null"
+          "vendor": "ST",
+          "cpuName": "STM32F407VE"
         },
         "proType": 1,
-        "speed": 8000,
+        "speed": 2400,
         "otherCmds": ""
       },
       "uploadConfigMap": {
@@ -325,17 +344,17 @@
           "bin": "",
           "baseAddr": "",
           "cpuInfo": {
-            "vendor": "null",
-            "cpuName": "null"
+            "vendor": "ST",
+            "cpuName": "STM32F407VE"
           },
           "proType": 1,
-          "speed": 8000,
+          "speed": 2400,
           "otherCmds": ""
         },
         "OpenOCD": {
           "bin": "",
           "target": "stm32f4x",
-          "interface": "stlink",
+          "interface": "jlink",
           "baseAddr": "0x08000000"
         }
       },
