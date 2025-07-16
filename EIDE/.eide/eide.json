@@ -22,10 +22,10 @@
             "name": "inc",
             "files": [
               {
-                "path": "../app/inc/board.h"
+                "path": "../app/inc/main.h"
               },
               {
-                "path": "../app/inc/main.h"
+                "path": "../app/inc/board.h"
               }
             ],
             "folders": []
@@ -36,16 +36,34 @@
         "name": "driver",
         "files": [
           {
-            "path": "../driver/LED.c"
-          },
-          {
-            "path": "../driver/LED.h"
-          },
-          {
             "path": "../driver/delay.c"
           },
           {
             "path": "../driver/delay.h"
+          },
+          {
+            "path": "../driver/usart.c"
+          },
+          {
+            "path": "../driver/usart.h"
+          },
+          {
+            "path": "../driver/led.c"
+          },
+          {
+            "path": "../driver/led.h"
+          },
+          {
+            "path": "../driver/rtc.c"
+          },
+          {
+            "path": "../driver/rtc.h"
+          },
+          {
+            "path": "../driver/timer.c"
+          },
+          {
+            "path": "../driver/timer.h"
           }
         ],
         "folders": []
@@ -362,18 +380,19 @@
         "name": "default",
         "incList": [
           "../app",
-          "../driver",
           "../firmware/cmsis/core",
           "../firmware/cmsis/device",
           "../firmware/driver/inc",
           ".cmsis/include",
           "../mdk/RTE/_Target 1",
-          "../app/inc"
+          "../app/inc",
+          "../driver"
         ],
         "libList": [],
         "defineList": [
           "USE_STDPERIPH_DRIVER",
-          "STM32F40_41xxx"
+          "STM32F40_41xxx",
+          "HSE_VALUE=8000000"
         ]
       },
       "builderOptions": {

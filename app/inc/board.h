@@ -1,10 +1,14 @@
-#ifndef _BOARD_H
-#define _BOARD_H
+#ifndef BROAD_H
+#define BROAD_H
 
-extern led_desc_t led0;
+#include "led.h"
 
-extern led_desc_t led1;
+extern const led_t led0;
 
-extern led_desc_t led2;
+extern const led_t led1;
 
-#endif // DEBUG
+extern const led_t led2;
+
+void board_init(void);
+
+#endif // ! BROAD_H

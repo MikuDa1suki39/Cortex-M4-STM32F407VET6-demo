@@ -1,9 +1,13 @@
-#include <stdbool.h>
-#include <stdint.h>
-#include <string.h>
+#include "stdint.h"
+#include "stdbool.h"
+#include "string.h"
 
 #include "stm32f4xx.h" // Device header
 
-#include "LED.h"
-#include "delay.h"
 #include "board.h"
+#include "delay.h"
+
+#include "led.h"
+#include "usart.h"
+#include "timer.h"
+#include "rtc.h"
