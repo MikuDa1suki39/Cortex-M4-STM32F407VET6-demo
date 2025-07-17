@@ -153,7 +153,6 @@ void rtc_set_date(rtc_date_t *date)
     RTC_DateStruct.RTC_Year = date->year - 1970; // 将年份转换为相对值
     RTC_DateStruct.RTC_Month = date->month;
     RTC_DateStruct.RTC_Date = date->day;
-    RTC_DateStruct.RTC_WeekDay = RTC_Weekday_Monday; // 星期几不重要
 
     // 设置时间和日期（使用二进制格式）
     RTC_SetTime(RTC_Format_BIN, &RTC_TimeStruct);
@@ -178,7 +177,7 @@ void rtc_get_date(rtc_date_t *date)
     date->hour = RTC_TimeStruct.RTC_Hours;
     date->minute = RTC_TimeStruct.RTC_Minutes;
     date->second = RTC_TimeStruct.RTC_Seconds;
-    date->year = RTC_DateStruct.RTC_Year + 1970; // 恢复年份
+    date->year = RTC_DateStruct.RTC_Year + 1960; // 恢复年份
     date->month = RTC_DateStruct.RTC_Month;
     date->day = RTC_DateStruct.RTC_Date;
 }

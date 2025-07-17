@@ -29,6 +29,15 @@
               }
             ],
             "folders": []
+          },
+          {
+            "name": "cmd",
+            "files": [
+              {
+                "path": "../app/cmd/lettershell_cmd.c"
+              }
+            ],
+            "folders": []
           }
         ]
       },
@@ -217,7 +226,35 @@
       {
         "name": "third_lib",
         "files": [],
-        "folders": []
+        "folders": [
+          {
+            "name": "lettershell",
+            "files": [
+              {
+                "path": "../third_lib/lettershell/shell.c"
+              },
+              {
+                "path": "../third_lib/lettershell/shell.h"
+              },
+              {
+                "path": "../third_lib/lettershell/shell_cfg.h"
+              },
+              {
+                "path": "../third_lib/lettershell/shell_cmd_list.c"
+              },
+              {
+                "path": "../third_lib/lettershell/shell_companion.c"
+              },
+              {
+                "path": "../third_lib/lettershell/shell_ext.c"
+              },
+              {
+                "path": "../third_lib/lettershell/shell_ext.h"
+              }
+            ],
+            "folders": []
+          }
+        ]
       }
     ]
   },
@@ -386,7 +423,8 @@
           ".cmsis/include",
           "../mdk/RTE/_Target 1",
           "../app/inc",
-          "../driver"
+          "../driver",
+          "../third_lib/lettershell"
         ],
         "libList": [],
         "defineList": [

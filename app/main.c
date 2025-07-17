@@ -1,57 +1,50 @@
 #include "main.h"
 
-static uint8_t rxdata[16];
-static uint16_t rxlen;
-bool dmastate;
+static Shell shell;
 
-static void timeelapse(void)
+static volatile uint8_t rxdata;
+
+static char shell_Buffer[512];
+
+static void rx_receive(uint8_t data)
 {
-	led_toggle(&led0);
+	rxdata = data;
 }
 
-static void usart_send()
+static signed short shell_read_(char *data, unsigned short len)
 {
-	dmastate = true;
-}
-
-static void usart_receive(uint8_t data)
-{
-	if (rxlen < 15)
+	if (rxdata != 0)
 	{
-		rxdata[rxlen++] = data;
+		*data = rxdata;
+		rxdata = 0;
+		return 1;
+	}
+	else
+	{
+		return 0;
 	}
 }
+
+static signed short shell_write_(char *data, unsigned short len)
+{
+	usart_send_data((uint8_t*)data,len);
+	return len;
+}
+
 
 int main(void)
 {
 	board_init();
-
 	usart_init();
-	led_init(&led0);
-	timer_init(1000 * 250);
-	time_elapsed_callback_register(timeelapse);
-	usart_receive_register(usart_receive);
-	usart_sendcomplete_register(usart_send);
+	usart_receive_register(rx_receive);
 
-	char str[64];
+	shell.read = shell_read_;
+	shell.write = shell_write_;
+	shellInit(&shell, shell_Buffer, sizeof(shell_Buffer));
+
 	while (1)
 	{
-		if (rxlen > 0)
-		{
-			dmastate = false;
-			usart_send_string("receive:");
-			usart_send_data(rxdata, rxlen);
-			rxlen = 0;
-			usart_send_string("\r\n");
-			strcpy(str, "hello");
-			while (rxlen == 0)
-			{
-				usart_send_data_async((uint8_t *)str, strlen(str));
-				delay_ms(250);
-			}
-
-			while (!(dmastate))
-				;
-		}
+		// OsTaskCreate(shellTask, &shell, );
+		shellTask(&shell);
 	}
 }
