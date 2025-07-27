@@ -2,35 +2,28 @@
 
 static Shell shell;
 
+static uint8_t rx_buffer[128];
+
+static ringbuffer8_t rxringbuffer;
+
 static volatile uint8_t rxdata;
 
 static char shell_Buffer[512];
 
 static void rx_receive(uint8_t data)
 {
-	rxdata = data;
-}
-
-static signed short shell_read_(char *data, unsigned short len)
-{
-	if (rxdata != 0)
+	// rxdata = data;
+	if (!rb8_full(rxringbuffer))
 	{
-		*data = rxdata;
-		rxdata = 0;
-		return 1;
-	}
-	else
-	{
-		return 0;
+		rb8_put(rxringbuffer, data);
 	}
 }
 
 static signed short shell_write_(char *data, unsigned short len)
 {
-	usart_send_data((uint8_t*)data,len);
+	usart_send_data((uint8_t *)data, len);
 	return len;
 }
-
 
 int main(void)
 {
@@ -38,13 +31,26 @@ int main(void)
 	usart_init();
 	usart_receive_register(rx_receive);
 
-	shell.read = shell_read_;
+	rxringbuffer = rb8_new(rx_buffer, sizeof(rx_buffer));
+
 	shell.write = shell_write_;
 	shellInit(&shell, shell_Buffer, sizeof(shell_Buffer));
 
+	uint8_t rx_data;
+
 	while (1)
 	{
-		// OsTaskCreate(shellTask, &shell, );
-		shellTask(&shell);
+		if (!rb8_empty(rxringbuffer))
+		{
+			rb8_get(rxringbuffer, &rx_data);
+			shellHandler(&shell, rx_data);
+		}
+
+		// if (rxdata != 0)
+		// {
+		// 	// shellTask(&shell);
+		// 	shellHandler(&shell, rxdata);
+		// 	rxdata = 0;
+		// }
 	}
 }

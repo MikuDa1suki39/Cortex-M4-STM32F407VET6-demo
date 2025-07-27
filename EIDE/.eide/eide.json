@@ -253,6 +253,18 @@
               }
             ],
             "folders": []
+          },
+          {
+            "name": "ringbuffer",
+            "files": [
+              {
+                "path": "../third_lib/ringbuffer/ringbuffer8.c"
+              },
+              {
+                "path": "../third_lib/ringbuffer/ringbuffer8.h"
+              }
+            ],
+            "folders": []
           }
         ]
       }
@@ -424,7 +436,8 @@
           "../mdk/RTE/_Target 1",
           "../app/inc",
           "../driver",
-          "../third_lib/lettershell"
+          "../third_lib/lettershell",
+          "../third_lib/ringbuffer"
         ],
         "libList": [],
         "defineList": [

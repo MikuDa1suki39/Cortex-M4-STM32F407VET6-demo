@@ -5,6 +5,7 @@
 
 #include "stm32f4xx.h" // Device header
 #include "shell.h"
+#include "ringbuffer8.h"
 
 #include "board.h"
 #include "delay.h"

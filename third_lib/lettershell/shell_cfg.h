@@ -175,7 +175,7 @@
  * @brief shell默认用户密码
  *        若默认用户不需要密码，设为""
  */
-#define     SHELL_DEFAULT_USER_PASSWORD "MYGO"
+#define     SHELL_DEFAULT_USER_PASSWORD ""
 
 /**
  * @brief shell自动锁定超时
