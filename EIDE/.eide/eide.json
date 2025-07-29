@@ -38,6 +38,15 @@
               }
             ],
             "folders": []
+          },
+          {
+            "name": "override",
+            "files": [
+              {
+                "path": "../app/override/malloc.c"
+              }
+            ],
+            "folders": []
           }
         ]
       },
@@ -265,6 +274,24 @@
               }
             ],
             "folders": []
+          },
+          {
+            "name": "tlsf",
+            "files": [
+              {
+                "path": "../third_lib/tlsf/tlsf.c"
+              },
+              {
+                "path": "../third_lib/tlsf/tlsf.h"
+              },
+              {
+                "path": "../third_lib/tlsf/mem_mgnt.c"
+              },
+              {
+                "path": "../third_lib/tlsf/mem_mgnt.h"
+              }
+            ],
+            "folders": []
           }
         ]
       }
@@ -334,7 +361,7 @@
                 "startAddr": "0x10000000",
                 "size": "0x10000"
               },
-              "isChecked": true,
+              "isChecked": false,
               "noInit": false
             }
           ],
@@ -437,13 +464,15 @@
           "../app/inc",
           "../driver",
           "../third_lib/lettershell",
-          "../third_lib/ringbuffer"
+          "../third_lib/ringbuffer",
+          "../third_lib/tlsf"
         ],
         "libList": [],
         "defineList": [
           "USE_STDPERIPH_DRIVER",
           "STM32F40_41xxx",
-          "HSE_VALUE=8000000"
+          "HSE_VALUE=8000000",
+          "NDEBUG"
         ]
       },
       "builderOptions": {

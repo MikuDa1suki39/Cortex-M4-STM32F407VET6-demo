@@ -27,6 +27,7 @@ static signed short shell_write_(char *data, unsigned short len)
 
 int main(void)
 {
+	mem_init();
 	board_init();
 	usart_init();
 	usart_receive_register(rx_receive);

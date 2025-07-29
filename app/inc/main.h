@@ -6,6 +6,7 @@
 #include "stm32f4xx.h" // Device header
 #include "shell.h"
 #include "ringbuffer8.h"
+#include "mem_mgnt.h"
 
 #include "board.h"
 #include "delay.h"
@@ -14,4 +15,3 @@
 #include "usart.h"
 #include "timer.h"
 #include "rtc.h"
-

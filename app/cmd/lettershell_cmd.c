@@ -4,6 +4,7 @@
 #include <stdlib.h>
 
 #include "shell.h"
+#include "mem_mgnt.h"
 
 /*Hello world!*/
 int cmd_helloworld(int argc, char *argv[])
@@ -22,9 +23,9 @@ SHELL_EXPORT_CMD(SHELL_CMD_PERMISSION(0) | SHELL_CMD_TYPE(SHELL_TYPE_CMD_MAIN), 
 /*ADD*/
 int cmd_add(int argc, char *argv[])
 {
-    if (argc!=3)
+    if (argc != 3)
     {
-        shellWriteString(shellGetCurrent(),"parameter error!\n");
+        shellWriteString(shellGetCurrent(), "parameter error!\n");
         return -1;
     }
 
@@ -43,3 +44,15 @@ int cmd_add(int argc, char *argv[])
     return 0;
 }
 SHELL_EXPORT_CMD(SHELL_CMD_PERMISSION(0) | SHELL_CMD_TYPE(SHELL_TYPE_CMD_MAIN), add, cmd_add, add);
+
+/*mem*/
+int cmd_memapply(int argc, char *argv[])
+{
+    int size = atoi(argv[1]);
+    uint8_t *ptr =malloc(size);
+    shellPrint(shellGetCurrent(), "allocated %d bytes at 0x%p\n", size, ptr);
+    free(ptr);
+
+    return 0;
+}
+SHELL_EXPORT_CMD(SHELL_CMD_PERMISSION(0) | SHELL_CMD_TYPE(SHELL_TYPE_CMD_MAIN), memapply, cmd_memapply, applyformem);
