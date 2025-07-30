@@ -1,57 +1,68 @@
 #include "main.h"
 
-static Shell shell;
+// static uint8_t rx_buffer[128];
 
-static uint8_t rx_buffer[128];
+// static ringbuffer8_t rxringbuffer;
 
-static ringbuffer8_t rxringbuffer;
+// static volatile uint8_t rxdata;
 
-static volatile uint8_t rxdata;
+// static void rx_receive(uint8_t data)
+// {
+// 	// rxdata = data;
+// 	if (!rb8_full(rxringbuffer))
+// 	{
+// 		rb8_put(rxringbuffer, data);
+// 	}
+// }
 
-static char shell_Buffer[512];
-
-static void rx_receive(uint8_t data)
+/**
+ * EasyLogger demo
+ */
+static void test_elog(void)
 {
-	// rxdata = data;
-	if (!rb8_full(rxringbuffer))
-	{
-		rb8_put(rxringbuffer, data);
-	}
-}
-
-static signed short shell_write_(char *data, unsigned short len)
-{
-	usart_send_data((uint8_t *)data, len);
-	return len;
+	/* test log output for all level */
+	log_a("Hello EasyLogger!");
+	log_e("Hello EasyLogger!");
+	log_w("Hello EasyLogger!");
+	log_i("Hello EasyLogger!");
+	log_d("Hello EasyLogger!");
+	log_v("Hello EasyLogger!");
+	elog_raw("Hello EasyLogger!");
 }
 
 int main(void)
 {
 	mem_init();
+
 	board_init();
 	usart_init();
-	usart_receive_register(rx_receive);
+	// usart_receive_register(rx_receive);
+	led_init(&led0);
 
-	rxringbuffer = rb8_new(rx_buffer, sizeof(rx_buffer));
+	/* initialize EasyLogger */
+	elog_init();
+	/* set EasyLogger log format */
+	elog_set_fmt(ELOG_LVL_ASSERT, ELOG_FMT_ALL);
+	elog_set_fmt(ELOG_LVL_ERROR, ELOG_FMT_LVL | ELOG_FMT_TAG | ELOG_FMT_TIME);
+	elog_set_fmt(ELOG_LVL_WARN, ELOG_FMT_LVL | ELOG_FMT_TAG | ELOG_FMT_TIME);
+	elog_set_fmt(ELOG_LVL_INFO, ELOG_FMT_LVL | ELOG_FMT_TAG | ELOG_FMT_TIME);
+	elog_set_fmt(ELOG_LVL_DEBUG, ELOG_FMT_ALL & ~(ELOG_FMT_FUNC | ELOG_FMT_T_INFO | ELOG_FMT_P_INFO));
+	elog_set_fmt(ELOG_LVL_VERBOSE, ELOG_FMT_ALL & ~(ELOG_FMT_FUNC | ELOG_FMT_T_INFO | ELOG_FMT_P_INFO));
+	/* start EasyLogger */
+	elog_start();
 
-	shell.write = shell_write_;
-	shellInit(&shell, shell_Buffer, sizeof(shell_Buffer));
-
-	uint8_t rx_data;
+	// rxringbuffer = rb8_new(rx_buffer, sizeof(rx_buffer));
+	// uint8_t rx_data;
 
 	while (1)
 	{
-		if (!rb8_empty(rxringbuffer))
-		{
-			rb8_get(rxringbuffer, &rx_data);
-			shellHandler(&shell, rx_data);
-		}
-
-		// if (rxdata != 0)
+		// if (!rb8_empty(rxringbuffer))
 		// {
-		// 	// shellTask(&shell);
-		// 	shellHandler(&shell, rxdata);
-		// 	rxdata = 0;
+		// 	rb8_get(rxringbuffer, &rx_data);
 		// }
+
+		/* test logger output */
+		test_elog();
+		delay_ms(2000);
 	}
 }

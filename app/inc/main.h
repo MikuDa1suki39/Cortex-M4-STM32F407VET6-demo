@@ -5,6 +5,7 @@
 
 #include "stm32f4xx.h" // Device header
 #include "shell.h"
+#include "elog.h"
 #include "ringbuffer8.h"
 #include "mem_mgnt.h"
 

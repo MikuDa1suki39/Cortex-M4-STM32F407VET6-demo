@@ -292,6 +292,33 @@
               }
             ],
             "folders": []
+          },
+          {
+            "name": "easylogger",
+            "files": [
+              {
+                "path": "../third_lib/easylogger/elog.c"
+              },
+              {
+                "path": "../third_lib/easylogger/elog.h"
+              },
+              {
+                "path": "../third_lib/easylogger/elog_async.c"
+              },
+              {
+                "path": "../third_lib/easylogger/elog_buf.c"
+              },
+              {
+                "path": "../third_lib/easylogger/elog_cfg.h"
+              },
+              {
+                "path": "../third_lib/easylogger/elog_port.c"
+              },
+              {
+                "path": "../third_lib/easylogger/elog_utils.c"
+              }
+            ],
+            "folders": []
           }
         ]
       }
@@ -465,7 +492,8 @@
           "../driver",
           "../third_lib/lettershell",
           "../third_lib/ringbuffer",
-          "../third_lib/tlsf"
+          "../third_lib/tlsf",
+          "../third_lib/easylogger"
         ],
         "libList": [],
         "defineList": [
