@@ -44,6 +44,9 @@
             "files": [
               {
                 "path": "../app/override/malloc.c"
+              },
+              {
+                "path": "../app/override/printf.c"
               }
             ],
             "folders": []
@@ -84,7 +87,35 @@
             "path": "../driver/timer.h"
           }
         ],
-        "folders": []
+        "folders": [
+          {
+            "name": "dht11",
+            "files": [
+              {
+                "path": "../driver/dht11/dht11.c"
+              },
+              {
+                "path": "../driver/dht11/dht11.h"
+              }
+            ],
+            "folders": []
+          },
+          {
+            "name": "lcd",
+            "files": [
+              {
+                "path": "../driver/lcd/FONT.H"
+              },
+              {
+                "path": "../driver/lcd/lcd.c"
+              },
+              {
+                "path": "../driver/lcd/lcd.h"
+              }
+            ],
+            "folders": []
+          }
+        ]
       },
       {
         "name": "firmware",
@@ -493,7 +524,9 @@
           "../third_lib/lettershell",
           "../third_lib/ringbuffer",
           "../third_lib/tlsf",
-          "../third_lib/easylogger"
+          "../third_lib/easylogger",
+          "../driver/dht11",
+          "../driver/lcd"
         ],
         "libList": [],
         "defineList": [

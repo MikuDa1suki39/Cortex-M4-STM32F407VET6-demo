@@ -11,6 +11,9 @@
 
 #include "board.h"
 #include "delay.h"
+#include "dht11.h"
+#include "lcd.h"
+
 
 #include "led.h"
 #include "usart.h"
